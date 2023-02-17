@@ -15,11 +15,11 @@ public class ProductRepository {
     //No need to write @Transactional annotation here bcz from service class transaction propagation level is REQUIRED
     //,so it uses existing transaction which created already in service class
     //so if we write here @Transactional annotation then its useless bcz by default Propagation.REQUIRED
+    //keeping @Transactional on the repo layer is not required, if service which calls the dao methods had already had existing transaction
     //@Transactional
     public void saveProduct(Product product){
         String sql="INSERT into Product VALUES(?,?)";
         Object[] args={product.getId(), product.getName()};
-
         jdbcTemplate.update(sql, args);
 
     }

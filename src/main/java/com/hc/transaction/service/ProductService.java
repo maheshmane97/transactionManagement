@@ -13,6 +13,7 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
+    //DriverManager.getConnection() will get @Transaction connection object
     @Transactional(rollbackFor = Exception.class)
     public void saveProd() throws Exception {
         for (int i=1;i<=10;i++){
@@ -20,12 +21,12 @@ public class ProductService {
             product.setId(i);
             product.setName("Test No : "+i);
             productRepository.saveProduct(product);
-            System.out.println("Product Inserted..##########"+i);
-            if(i==5){
-                throw new Exception(
-                        "Something happen..!"
-                );
-            }
+//            System.out.println("Product Inserted..##########"+i);
+//            if(i==5){
+//                throw new Exception(
+//                        "Something happen..!"
+//                );
+//            }
         }
     }
 }
